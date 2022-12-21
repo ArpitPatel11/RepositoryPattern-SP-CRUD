@@ -26,7 +26,7 @@ namespace SPCrudAPI.Repository
             var param = new SqlParameter("@ProductId", ProductId);
 
             var productDetails = await Task.Run(() => _dbContext.Products
-                            .FromSqlRaw(@"exec [dbo].[USP_Product_GetBYId] @ProductId", param).ToListAsync());
+                            .FromSqlRaw(@"exec USP_Product_GetBYId @ProductId", param).ToListAsync());
 
             return productDetails;
         }
