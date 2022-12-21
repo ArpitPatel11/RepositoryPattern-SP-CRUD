@@ -61,7 +61,7 @@ namespace SPCrudAPI.Controllers
             {
                 var response = await _productService.AddProductAsync(product);
 
-                return Ok(response);
+                return Ok(product);
             }
             catch
             {
@@ -80,7 +80,7 @@ namespace SPCrudAPI.Controllers
             try
             {
                 var result = await _productService.UpdateProductAsync(product);
-                return Ok(result);
+                return Ok(product);
             }
             catch
             {
