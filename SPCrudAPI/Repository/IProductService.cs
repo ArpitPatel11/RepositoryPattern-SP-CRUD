@@ -1,4 +1,5 @@
-﻿using SPCrudAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using SPCrudAPI.Models;
 
 namespace SPCrudAPI.Repository
 {
@@ -9,5 +10,7 @@ namespace SPCrudAPI.Repository
         public Task<int> AddProductAsync(Product product);
         public Task<int> UpdateProductAsync(Product product);
         public Task<int> DeleteProductAsync(int Id);
+
+
     }
 }
