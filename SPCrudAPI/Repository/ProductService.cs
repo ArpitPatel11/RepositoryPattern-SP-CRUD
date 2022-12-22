@@ -1,7 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SPCrudAPI.Data;
 using SPCrudAPI.Models;
+using System.Data;
 
 namespace SPCrudAPI.Repository
 {
@@ -20,6 +22,7 @@ namespace SPCrudAPI.Repository
                 .FromSqlRaw<Product>("USP_Product_Get")
                 .ToListAsync();
         }
+
 
         public async Task<IEnumerable<Product>> GetProductByIdAsync(int ProductId)
         {
@@ -64,5 +67,7 @@ namespace SPCrudAPI.Repository
         {
             return await Task.Run(() => _dbContext.Database.ExecuteSqlInterpolatedAsync($"USP_Product_Delete {ProductId}"));
         }
+
+        
     }
 }

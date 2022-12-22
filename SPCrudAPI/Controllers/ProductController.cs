@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SPCrudAPI.Models;
 using SPCrudAPI.Repository;
@@ -93,13 +94,15 @@ namespace SPCrudAPI.Controllers
         {
             try
             {
-                var response = await _productService.DeleteProductAsync(Id);
+               var response =   await _productService.DeleteProductAsync(Id);
                 return response;
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+               throw;
             }
+
+            
         }
     }
 }
