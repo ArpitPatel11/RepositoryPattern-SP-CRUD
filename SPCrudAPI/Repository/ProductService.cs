@@ -14,7 +14,7 @@ namespace SPCrudAPI.Repository
         public ProductService(DataContext dbContext)
         {
             _dbContext = dbContext;
-        }
+        }   
 
         public async Task<List<Product>> GetProductListAsync()
         {
