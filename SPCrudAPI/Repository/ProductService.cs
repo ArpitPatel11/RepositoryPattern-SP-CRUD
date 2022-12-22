@@ -17,7 +17,7 @@ namespace SPCrudAPI.Repository
         public async Task<List<Product>> GetProductListAsync()
         {
             return await _dbContext.Products
-                .FromSqlRaw<Product>("USP_Product_GetALL")
+                .FromSqlRaw<Product>("USP_Product_Get")
                 .ToListAsync();
         }
 
