@@ -145,7 +145,7 @@ namespace SPCrudAPI.Repository
             return subcategoryDetails;
         }
 
-        public async Task<int> AddCategoryAsync(SubCategory subcategory)
+        public async Task<int> AddSubCategoryAsync(SubCategory subcategory)
         {
             var parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@CategoryId", subcategory.CategoryId));
@@ -159,7 +159,7 @@ namespace SPCrudAPI.Repository
             return result;
         }
 
-        public async Task<int> UpdateCategoryAsync(SubCategory subcategory)
+        public async Task<int> UpdateSubCategoryAsync(SubCategory subcategory)
         {
             var parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@CategoryId", subcategory.CategoryId));
@@ -169,7 +169,7 @@ namespace SPCrudAPI.Repository
 
             var result = await Task.Run(() => _dbContext.Database
             .ExecuteSqlRawAsync(@"exec USP_SubCategory_Update 
-                                @CategoryId, @SubCategoryId, @SubCategoryName, 1", 
+                                @CategoryId, @SubCategoryId, @SubCategoryName, 1",
                                 parameter.ToArray()));
             return result;
         }
@@ -179,6 +179,8 @@ namespace SPCrudAPI.Repository
             return await Task.Run(() => _dbContext.Database
                     .ExecuteSqlInterpolatedAsync($"USP_SubCategory_Delete {Id}"));
         }
+
+
     }  
 }
 

@@ -20,8 +20,8 @@ namespace SPCrudAPI.Repository
 
         public Task<List<SubCategory>> GetSubCategoryListAsync();
         public Task<IEnumerable<SubCategory>> GetSubCategoryByIdAsync(int Id);
-        public Task<int> AddCategoryAsync(SubCategory subcategory);
-        public Task<int> UpdateCategoryAsync(SubCategory subcategory);
+        public Task<int> AddSubCategoryAsync(SubCategory subcategory);
+        public Task<int> UpdateSubCategoryAsync(SubCategory subcategory);
         public Task<int> DeleteSubCategoryAsync(int Id);
 
 
