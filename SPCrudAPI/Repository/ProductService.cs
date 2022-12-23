@@ -37,8 +37,8 @@ namespace SPCrudAPI.Repository
         public async Task<int> AddProductAsync(Product product)
         {
             var parameter = new List<SqlParameter>();
-            parameter.Add(new SqlParameter("@ProductName", product.CategoryId));
-            parameter.Add(new SqlParameter("@ProductName", product.SubCategoryId));
+            parameter.Add(new SqlParameter("@CategoryId", product.CategoryId));
+            parameter.Add(new SqlParameter("@SubCategoryId", product.SubCategoryId));
             parameter.Add(new SqlParameter("@ProductName", product.ProductName));
             parameter.Add(new SqlParameter("@ProductPrice", product.ProductPrice));
             parameter.Add(new SqlParameter("@ProductDescription", product.ProductDescription));
@@ -46,8 +46,8 @@ namespace SPCrudAPI.Repository
             parameter.Add(new SqlParameter("@IsActive", product.IsActive));
 
             var result = await Task.Run(() => _dbContext.Database
-           .ExecuteSqlRawAsync(@"exec USP_Product_Insert @CategoryId,@SubCategoryId
-                               @ProductName,  @ProductPrice, @ProductDescription, 
+           .ExecuteSqlRawAsync(@"exec USP_Product_Insert @CategoryId,@SubCategoryId ,
+                                @ProductName,  @ProductPrice, @ProductDescription, 
                                @ProductStock ,1", parameter.ToArray()));
 
             return result;
@@ -66,7 +66,7 @@ namespace SPCrudAPI.Repository
             parameter.Add(new SqlParameter("@IsActive", product.IsActive));
 
             var result = await Task.Run(() => _dbContext.Database
-            .ExecuteSqlRawAsync(@"exec USP_Product_Update @CategoryId,@SubCategoryId
+            .ExecuteSqlRawAsync(@"exec USP_Product_Update @CategoryId,@SubCategoryId,
                                 @ProductId, @ProductName,@ProductPrice, 
                                 @ProductDescription,  @ProductStock, 1", parameter.ToArray()));
             return result;
