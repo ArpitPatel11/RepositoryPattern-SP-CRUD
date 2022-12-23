@@ -23,7 +23,6 @@ namespace SPCrudAPI.Repository
                 .ToListAsync();
         }
 
-
         public async Task<IEnumerable<Product>> GetProductByIdAsync(int ProductId)
         {
             var param = new SqlParameter("@ProductId", ProductId);
@@ -71,6 +70,7 @@ namespace SPCrudAPI.Repository
                                 @ProductDescription,  @ProductStock, 1", parameter.ToArray()));
             return result;
         }
+
         public async Task<int> DeleteProductAsync(int ProductId)
         {
             return await Task.Run(() => _dbContext.Database.ExecuteSqlInterpolatedAsync($"USP_Product_Delete {ProductId}"));
