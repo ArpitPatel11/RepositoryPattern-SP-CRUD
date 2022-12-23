@@ -85,7 +85,7 @@ namespace SPCrudAPI.Repository
 
         public async Task<IEnumerable<Category>> GetCategoryByIdAsync(int CategoryId)
         {
-            var param = new SqlParameter("@ProductId", CategoryId);
+            var param = new SqlParameter("@CategoryId", CategoryId);
 
             var categoryDetails = await Task.Run(() => _dbContext.Categories
                                 .FromSqlRaw(@"exec USP_Product_GetBYId @CategoryId", param)
@@ -115,7 +115,7 @@ namespace SPCrudAPI.Repository
             parameter.Add(new SqlParameter("@IsActive", category.IsActive));
 
             var result = await Task.Run(() => _dbContext.Database
-            .ExecuteSqlRawAsync(@"exec USP_Product_Update 
+            .ExecuteSqlRawAsync(@"exec USP_Category_Update 
                                 @CategoryId, @CategoryName, 1", parameter.ToArray()));
             return result;
         }
