@@ -69,7 +69,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpPut("updateproduct")]
+        [HttpPut("updatecategory")]
         public async Task<IActionResult> UpdateCategoryAsync(Category category)
         {
             if (category == null)
@@ -88,7 +88,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpDelete("deleteproduct")]
+        [HttpDelete("deletecategory")]
         public async Task<int> DeleteCategoryAsync(int Id)
         {
             try
