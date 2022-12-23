@@ -1,4 +1,6 @@
-﻿namespace SPCrudAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SPCrudAPI.Models
 {
     public class SubCategory
     {
