@@ -11,6 +11,13 @@ namespace SPCrudAPI.Repository
         public Task<int> UpdateProductAsync(Product product);
         public Task<int> DeleteProductAsync(int Id);
 
+        public Task<List<Category>> GetCategoryListAsync();
+        public Task<IEnumerable<Category>> GetCategoryByIdAsync(int Id);
+        public Task<int> AddCategoryAsync(Category category);
+        public Task<int> UpdateCategoryAsync(Category category);
+        public Task<int> DeleteCategoryAsync(int Id);
+
+
 
     }
 }

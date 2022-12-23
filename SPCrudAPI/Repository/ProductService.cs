@@ -76,6 +76,56 @@ namespace SPCrudAPI.Repository
             return await Task.Run(() => _dbContext.Database.ExecuteSqlInterpolatedAsync($"USP_Product_Delete {ProductId}"));
         }
 
-        
-    }
+        public async Task<List<Category>> GetCategoryListAsync()
+        {
+            return await _dbContext.Categories
+                .FromSqlRaw<Category>("USP_Category_Get")
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoryByIdAsync(int CategoryId)
+        {
+            var param = new SqlParameter("@ProductId", CategoryId);
+
+            var categoryDetails = await Task.Run(() => _dbContext.Categories
+                                .FromSqlRaw(@"exec USP_Product_GetBYId @CategoryId", param)
+                                .ToListAsync());
+
+            return categoryDetails;
+        }
+
+        public async Task<int> AddCategoryAsync(Category category)
+        {
+            var parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@CategoryName", category.CategoryName));
+            parameter.Add(new SqlParameter("@IsActive", category.IsActive));
+
+            var result = await Task.Run(() => _dbContext.Database
+           .ExecuteSqlRawAsync(@"exec USP_Category_Insert 
+                               @CategoryName, 1", parameter.ToArray()));
+
+            return result;
+        }
+
+        public async Task<int> UpdateCategoryAsync(Category category)
+        {
+            var parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@CategoryId", category.CategoryId));
+            parameter.Add(new SqlParameter("@CategoryName", category.CategoryName));
+            parameter.Add(new SqlParameter("@IsActive", category.IsActive));
+
+            var result = await Task.Run(() => _dbContext.Database
+            .ExecuteSqlRawAsync(@"exec USP_Product_Update 
+                                @CategoryId, @CategoryName, 1", parameter.ToArray()));
+            return result;
+        }
+
+        public async Task<int> DeleteCategoryAsync(int CategoryId)
+        {
+            return await Task.Run(() => _dbContext.Database
+                    .ExecuteSqlInterpolatedAsync($"USP_Category_Delete {CategoryId}"));
+
+        }
+    }  
 }
+
