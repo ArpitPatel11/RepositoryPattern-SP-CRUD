@@ -59,7 +59,7 @@ namespace SPCrudAPI.Controllers
 
             try
             {
-                var response = await _productService.A(subcategory);
+                var response = await _productService.AddSubCategoryAsync(subcategory);
 
                 return Ok(subcategory);
             }
@@ -69,18 +69,18 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpPut("updatecategory")]
-        public async Task<IActionResult> UpdateCategoryAsync(Category category)
+        [HttpPut("updatesubcategory")]
+        public async Task<IActionResult> UpdateSubCategoryAsync(SubCategory subcategory)
         {
-            if (category == null)
+            if (subcategory == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                var result = await _productService.UpdateCategoryAsync(category);
-                return Ok(category);
+                var result = await _productService.UpdateSubCategoryAsync(subcategory);
+                return Ok(subcategory);
             }
             catch
             {
@@ -88,12 +88,12 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpDelete("deletecategory")]
-        public async Task<int> DeleteCategoryAsync(int Id)
+        [HttpDelete("deletesubcategory")]
+        public async Task<int> DeleteSubCategoryAsync(int Id)
         {
             try
             {
-                var response = await _productService.DeleteCategoryAsync(Id);
+                var response = await _productService.DeleteSubCategoryAsync(Id);
                 return response;
             }
             catch (Exception ex)
