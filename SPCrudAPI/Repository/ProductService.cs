@@ -179,8 +179,6 @@ namespace SPCrudAPI.Repository
             return await Task.Run(() => _dbContext.Database
                     .ExecuteSqlInterpolatedAsync($"USP_SubCategory_Delete {Id}"));
         }
-
-
     }  
 }
 
