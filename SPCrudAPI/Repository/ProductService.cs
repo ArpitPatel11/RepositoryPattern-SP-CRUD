@@ -126,6 +126,59 @@ namespace SPCrudAPI.Repository
                     .ExecuteSqlInterpolatedAsync($"USP_Category_Delete {CategoryId}"));
 
         }
+
+        public async Task<List<SubCategory>> GetSubCategoryListAsync()
+        {
+            return await _dbContext.SubCategories
+                 .FromSqlRaw<SubCategory>("USP_SubCategory_Get")
+                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<SubCategory>> GetSubCategoryByIdAsync(int SubCategoryId)
+        {
+            var param = new SqlParameter("@SubCategoryId", SubCategoryId);
+
+            var subcategoryDetails = await Task.Run(() => _dbContext.SubCategories
+                                .FromSqlRaw(@"exec USP_SubCategory_ById @SubCategoryId", param)
+                                .ToListAsync());
+
+            return subcategoryDetails;
+        }
+
+        public async Task<int> AddCategoryAsync(SubCategory subcategory)
+        {
+            var parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@CategoryId", subcategory.CategoryId));
+            parameter.Add(new SqlParameter("@SubCategoryName", subcategory.SubCategoryName));
+            parameter.Add(new SqlParameter("@IsActive", subcategory.IsActive));
+
+            var result = await Task.Run(() => _dbContext.Database
+           .ExecuteSqlRawAsync(@"exec USP_SubCategory_Insert 
+                              @CategoryId, @SubCategoryName, 1", parameter.ToArray()));
+
+            return result;
+        }
+
+        public async Task<int> UpdateCategoryAsync(SubCategory subcategory)
+        {
+            var parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@CategoryId", subcategory.CategoryId));
+            parameter.Add(new SqlParameter("@SubCategoryId", subcategory.SubCategoryId));
+            parameter.Add(new SqlParameter("@SubCategoryName", subcategory.SubCategoryName));
+            parameter.Add(new SqlParameter("@IsActive", subcategory.IsActive));
+
+            var result = await Task.Run(() => _dbContext.Database
+            .ExecuteSqlRawAsync(@"exec USP_SubCategory_Update 
+                                @CategoryId, @SubCategoryId, @SubCategoryName, 1", 
+                                parameter.ToArray()));
+            return result;
+        }
+
+        public async Task<int> DeleteSubCategoryAsync(int Id)
+        {
+            return await Task.Run(() => _dbContext.Database
+                    .ExecuteSqlInterpolatedAsync($"USP_SubCategory_Delete {Id}"));
+        }
     }  
 }
 
