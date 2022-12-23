@@ -1,4 +1,5 @@
-﻿namespace SPCrudAPI.Models
+﻿
+namespace SPCrudAPI.Models
 {
     public class Product
     {
