@@ -101,8 +101,7 @@ namespace SPCrudAPI.Repository
             parameter.Add(new SqlParameter("@IsActive", category.IsActive));
 
             var result = await Task.Run(() => _dbContext.Database
-           .ExecuteSqlRawAsync(@"exec USP_Category_Insert 
-                               @CategoryName, 1", parameter.ToArray()));
+           .ExecuteSqlRawAsync(@"exec USP_Category_Insert @CategoryName ,1", parameter.ToArray()));
 
             return result;
         }

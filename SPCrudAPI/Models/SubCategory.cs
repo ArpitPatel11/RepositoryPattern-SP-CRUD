@@ -8,6 +8,7 @@ namespace SPCrudAPI.Models
     public class SubCategory
     {
         public int CategoryId { get; set; }
+        [NotMapped]
         public string CategoryName { get; set; } = string.Empty;
         public int SubCategoryId { get; set; }
         public string SubCategoryName { get; set; } = string.Empty;

@@ -30,7 +30,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpGet("getproductbyid")]
+        [HttpGet]
         public async Task<IEnumerable<Product>> GetProductByIdAsync(int Id)
         {
             try
@@ -50,7 +50,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpPost("addproduct")]
+        [HttpPost]
         public async Task<IActionResult> AddProductAsync(Product product)
         {
             if (product == null)
@@ -70,7 +70,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpPut("updateproduct")]
+        [HttpPut]
         public async Task<IActionResult> UpdateProductAsync(Product product)
         {
             if (product == null)
@@ -89,7 +89,7 @@ namespace SPCrudAPI.Controllers
             }
         }
 
-        [HttpDelete("deleteproduct")]
+        [HttpDelete]
         public async Task<int> DeleteProductAsync(int Id)
         {
             try
@@ -101,7 +101,7 @@ namespace SPCrudAPI.Controllers
             {
                throw;
             }
-
+                
             
         }
     }
