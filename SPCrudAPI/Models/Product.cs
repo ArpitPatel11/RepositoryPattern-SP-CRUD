@@ -4,9 +4,9 @@ namespace SPCrudAPI.Models
     public class Product
     {
         public int CategoryId  { get; set; }
-        public string CategoryName { get; set; } = string.Empty;
+        //public string CategoryName { get; set; } = string.Empty;
         public int SubCategoryId { get; set; }
-        public string SubCategoryName { get; set; } = string.Empty;
+        //public string SubCategoryName { get; set; } = string.Empty;
         public int ProductId { get; set; }
         public string ProductName { get; set; }=string.Empty;
         public int ProductPrice { get; set; }

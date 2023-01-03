@@ -62,13 +62,14 @@ namespace SPCrudAPI.Controllers
             {
                 var response = await _productService.AddProductAsync(product);
 
-                return Ok(product);
+                return Ok(response);
             }
             catch
             {
                 throw;
             }
         }
+    
 
         [HttpPut]
         public async Task<IActionResult> UpdateProductAsync(Product product)
@@ -81,7 +82,7 @@ namespace SPCrudAPI.Controllers
             try
             {
                 var result = await _productService.UpdateProductAsync(product);
-                return Ok(product);
+                return Ok(result);
             }
             catch
             {
@@ -94,15 +95,15 @@ namespace SPCrudAPI.Controllers
         {
             try
             {
-               var response =   await _productService.DeleteProductAsync(Id);
+                var response = await _productService.DeleteProductAsync(Id);
                 return response;
             }
-            catch(Exception ex)
+            catch
             {
-               throw;
+                throw;
             }
-                
-            
+
+
         }
     }
 }
